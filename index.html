@@ -1,0 +1,745 @@
+<!doctype html>  
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Introduction to GIT - Andrea Bolandrina</title>
+
+        <meta name="description" content="GIT intro">
+        <meta name="author" content="Andrea Bolandrina">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        
+        <style type="text/css">
+            /* Override framework CSS*/
+            .reveal .slides {
+                margin-top: -350px;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Used to fade in a background when a specific slide state is reached -->
+            <div class="state-background"></div>
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Introduction to GIT</h1>
+                    <h3 class="inverted">Andrea Bolandrina</h3>
+                    <time datetime="2012-07-23">23rd July 2012</time>
+                    <script>
+                        // Delicously hacky. Look away.
+                        if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+                    </script>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Contents</h2>
+                        <ul>
+                            <li>Birth of GIT</li>
+                            <li>Git usage statistics</li>
+                            <ul>
+                                <li>Google trends</li>
+                                <li>Github.com</li>
+                            </ul>
+                            <li>Advantages of GIT
+                                <ul>
+                                    <li>Distributed revision control system</li>
+                                    <li>Data assurance</li>
+                                    <li>Debugging tools</li>
+                                    <li>Strong support for non-linear development</li>
+                                    <li>Branching and Merging</li>
+                                </ul>
+                            </li>
+                            <li>Installation</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Contents</h2>
+                        <ul>
+                            <li>GIT setup
+                                <ul>
+                                    <li>User configuration (config)</li>
+                                    <li>Creating a repository (init)</li>
+                                    <li>Cloning a repository (clone)</li>
+                                    <li>Cloning a SVN repository (svn clone)</li>
+                                </ul>
+                            </li>
+                            <li>.git directory structure</li>
+                            <li>Branching and Merging</li>
+                            <li>Remote commands
+                                <ul>
+                                    <li>Remote</li>
+                                    <li>Fetch</li>
+                                    <li>Pull</li>
+                                    <li>Push</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Contents</h2>
+                        <ul>
+                            <li>GIT --bare repository
+                                <ul>
+                                    <li>What it is</li>
+                                    <li>Reasons to exist</li>
+                                    <li>The correct way of using it</li>
+                                </ul>
+                            </li>
+                            <li>GIT GUIs</li>
+                            <li>Resources/Documentation</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Birth of GIT</h2>
+                        <p>
+                            Linus Torvalds began the development of Git on the 3rd April 2005 after 
+                            BitKeeper (the source code management system used by the Linux kernel developers) 
+                            had withdrawn the free use of the product.
+                        </p>
+                        <p class="fragment">
+                            Torvalds wanted a distributed system that he could use like BitKeeper, 
+                            but none of the available free systems met his needs, particularly his performance needs.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Birth of GIT</h2>
+                        <p>
+                            Torvalds had several design criteria:
+                        </p>
+                        <ol>
+                            <li class="fragment">Take CVS as an example of what not to do; if in doubt, make the exact opposite decision;</li>
+                            <li class="fragment">Support a distributed, BitKeeper-like, workflow;</li>
+                            <li class="fragment">Very strong safeguards against corruption, either accidental or malicious;</li>
+                            <li class="fragment">Very high performance.</li>
+                        </ol>
+                        <p class="fragment">
+                            On the 16th of June, the kernel 2.6.12 release was managed by Git.
+                        </p>
+                        <p class="fragment">
+                            Since then, Git has gained popularity and also demand in the market. 
+                            [<a href="http://www.itjobswatch.co.uk/default.aspx?page=1&sortby=0&orderby=0&q=subversion+git&id=0&lid=2618" 
+                                target="_blank">
+                                ITJobsWatch.co.uk
+                            </a>]
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Git usage statistics</h2>
+                        <h3>Google Trends</h3>
+                        <p>
+                            <img src="images/git-svn-subversion.jpg" 
+                            alt="git, svn, subversion google Trends" 
+                            title="git, svn, subversion google Trends" />
+                        </p>
+                        <br /><br />
+                        [<a href="http://www.google.com/trends/?q=git,svn,subversion"
+                        target="_blank">Google Trends</a>]
+                    </section>
+                    <section>
+                        <h2>Git usage statistics</h2>
+                        <h3>Github.com</h3>
+                        <p>1,850,535 people hosting over 3,300,246 repositories (as of the 21st of July 2012)</p>
+                        <p class="fragment">Who is using it?</p>
+                        <ul>
+                            <li class="fragment">Facebook</li>
+                            <li class="fragment">Twitter</li>
+                            <li class="fragment">Microsoft</li>
+                            <li class="fragment">vmware</li>
+                            <li class="fragment">Red Hat Linux</li>
+                            <li class="fragment">LinkedIn</li>
+                            <li class="fragment">Mozilla</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Git usage statistics</h2>
+                        <h3>Github.com</h3>
+                        <p>and more...</p>
+                        <ul>
+                            <li>jQuery</li>
+                            <li>Reddit</li>
+                            <li>Curl</li>
+                            <li>Ruby on Rails</li>
+                            <li>node.js</li>
+                            <li>CakePHP</li>
+                            <li>...</li>
+                        </ul>
+                        <p>
+                            [<a href="https://github.com"
+                                target="_blank">Git Hub</a>]
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Advantages of GIT</h2>
+                        <h3>Distributed revision control system</h3>
+                        <p class="fragment">The advantages of having a local repository:</p>
+                        <ul>
+                            <li class="fragment">
+                                speed - nearly every operation (commits, diffs, logs, branches, merges etc) are done on the local disk
+                            </li>
+                            <li class="fragment">
+                                reliability - Internet connection not required (just in case)
+                            </li>
+                            <li class="fragment">
+                                backups - every repository is a backup of all revisions, tags, branches etc
+                            </li>
+                            <li class="fragment">
+                                workflow - any type of workflow can be implemented 
+                                [<a href="http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows" 
+                                    target="_blank">Docs</a>]
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Advantages of GIT</h2>
+                        <h3>Data assurance</h3>
+                        <p>
+                            The data model that Git uses ensures the cryptographic 
+                            integrity of your project.
+                            Every file and commit is checksummed and retrieved 
+                            by its checksum when checked back out.
+                        </p>
+                        <p class="fragment">
+                            Changing any data (file, date, commit message, etc) in the repository
+                            would change the IDs of everything after that point.
+                        </p>
+                        <p class="fragment">
+                            It means that if you have a commit ID, you can be sure 
+                            that your project is exactly the same as when it was first committed, 
+                            and also that its history was not changed.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Advantages of GIT</h2>
+                        <h3>Debugging tools</h3>
+                        <ul>
+                            <li class="fragment">File annotation (blame -C) - Git analyses the file and tries to figure out 
+                                where snippets of code come from, if copied from elsewhere.
+                            </li>
+                            <li class="fragment">
+                                <p>GREP can be used to search for keywords in the repository history.</p>
+                                <pre><code>
+$ git grep hello $(git rev-list --all)
+                                </code></pre>
+                            </li>
+                            <li class="fragment">
+                                Find by binary search the change that introduced a bug (bisect).
+                                [<a href="http://git-scm.com/book/ch6-5.html#Binary-Search" 
+                                    target="_blank">Docs</a>]
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Advantages of GIT</h2>
+                        <h3>Strong support for non-linear development</h3>
+                        <p class="fragment">
+                            In Git, everything is a branch, that's why a lot of effort has been put into doing the merge right.
+                        </p>
+                        <p class="fragment">
+                            Because of Git's speed and its "smart" merging algorithms the way we develop software can change.
+                        </p>
+                        <p class="fragment">
+                            Branching and merging should become an easy task every developer would perform every day.
+                        </p>
+                        <p class="fragment">
+                            Every story (even small ones) should be a different local branch.
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Advantages of GIT</h2>
+                        <h3>Branching and Merging</h3>
+                        <p>This would allow us to "freeze" the work we are doing on a current story 
+                            and focus on a quick/hot fix. For example.</p>
+                        <ol>
+                            <li class="fragment">
+                                You are working on the branch "story23" and you are half way through.
+                            </li>
+                            <li class="fragment">
+                                Suddenly you are required to fix something quickly.
+                            </li>
+                            <li class="fragment">
+                                COMMIT or STASH your changes, and CHECKOUT the master branch to be in a clean state.
+                            </li>
+                            <li class="fragment">
+                                Create the branch "hotfix", make your changes, MERGE it (with master) and go live.
+                            </li>
+                            <li class="fragment">
+                                Now you can go back to what you were doing. 
+                                CHECKOUT "story23", finish it and  MERGE it back to master.
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Installation</h2>
+                    <p>Red Hat based systems</p>
+                    <pre><code contenteditable>
+$ yum install git
+                                    </code></pre>
+                    <p>Debian based systems</p>
+                    <pre><code contenteditable>
+$ apt-get install git-core
+                                    </code></pre>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>GIT Setup</h2>
+                        <h3>User configuration (config)</h3>
+                        <pre><code>
+$ git config --global user.name "Andrea Bolandrina"
+                            </code></pre>
+                            <pre><code>
+$ git config --global user.email "andrea.bolandrina@domain.com"
+                            </code></pre>
+                    </section>
+                    
+                    <section>
+                        <h2>GIT Setup</h2>
+                        <h3>User configuration (config)</h3>
+                        <p>
+                            List all variables set in the config file.
+                        </p>
+                        <pre><code>
+$ git config -l
+user.name=Andrea Bolandrina
+user.email=andrea.bolandrina@domain.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+                        </code></pre>
+                        <p class="fragment">
+                            User preferences like real name, email address, preferences, 
+                            command aliases, etc are held in the user's home directory 
+                            in a file called ~/.gitconfig.
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>GIT Setup</h2>
+                        <h3>Creating a repository (init)</h3>
+                        <pre><code>
+$ git init
+                        </code></pre>
+                        <pre><code>
+$ git add .
+                        </code></pre>
+                        <pre><code>
+$ git commit -m "first commit"
+                        </code></pre>
+                        
+                        
+                    </section>
+                    <section>
+                        <h2>GIT Setup</h2>
+                        <h3>Cloning a repository (clone)</h3>
+                        
+                        <pre><code>
+$ git clone /local/git/directory/
+                        </code></pre>
+                        <pre><code>
+$ git clone ssh://andrea@domain.com/remote/git/directory/
+                        </code></pre>
+                        <pre><code>
+$ git clone git://github.com/username/projectname.git
+                        </code></pre>
+                    </section>
+                    
+                    <section>
+                        <h2>GIT Setup</h2>
+                        <h3>Cloning a SVN repository (svn clone)</h3>
+                        Red Hat
+                        <pre><code>
+$ git-svn clone svn://domain.com/svn/repos/project
+                        </code></pre>
+                        Debian
+                        <pre><code>
+$ git svn clone svn://domain.com/svn/repos/project
+                        </code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <h2>.git directory structure</h2>
+                    <pre><code>
+├── COMMIT_EDITMSG
+├── config
+├── description
+├── HEAD
+├── hooks
+.....................
+├── index
+├── info
+│   └── exclude
+├── logs
+.....................
+├── objects
+│   ├── 00
+│   │   └── c189cb814a3e3df8183cde34b287ab22dc9389
+.....................
+│   ├── info
+│   └── pack
+├── ORIG_HEAD
+└── refs
+    ├── heads
+    │   ├── master
+    │   └── test
+    └── tags
+                    </code></pre>
+                    [<a href="http://www.siteground.com/tutorials/git/directory.htm" target="_blank">
+                        Docs
+                    </a>]
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Branching and merging</h2>
+                        <p class="fragment">
+                            You start working on a new story
+                        </p>
+                        <pre class="fragment"><code>
+$ git branch story23
+$ git checkout story23
+                        </code></pre>
+                        <p class="fragment">
+                            Start making your changes
+                        </p>
+                        <pre class="fragment"><code>
+$ vim template.php
+$ git commit -a -m 'story23: changed footer'
+                        </code></pre>
+                        <p class="fragment">
+                            While you are half way through you are required 
+                            to fix something else urgently
+                        </p>
+                    </section>
+                    <section>
+                        <h2>Branching and merging</h2>
+                        <p>
+                            So you checkout the master to have a clean tree (your
+                            previous changes are safe in the branch "story23")
+                        </p>
+                        <pre class="fragment"><code>
+$ git checkout master
+                        </code></pre>
+                        <p class="fragment">
+                            Create a "hotfix" branch
+                        </p>
+                        <pre class="fragment"><code>
+$ git branch hotfix
+$ git checkout hotfix
+                        </code></pre>
+                        <p class="fragment">
+                            Remove that "die($variables);" you left on the home page (without telling your manager)
+                        </p>
+                        <pre class="fragment"><code>
+$ vim template.php
+$ git commit -a -m 'hotfix: live fatal error on homepage FIXED'
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Branching and merging</h2>
+                        <p>
+                            Merge your changes back to the master and it's now 
+                            ready to go live (PUSH required)
+                        </p>
+                        <pre class="fragment"><code>
+$ git checkout master
+$ git merge hotfix
+                        </code></pre>
+                        <p class="fragment">
+                            Delete the branch no longer needed
+                        </p>
+                        <pre class="fragment"><code>
+$ git branch -d hotfix
+                        </code></pre>
+                        <p class="fragment">
+                            And go back to your "story23"
+                        </p>
+                        <pre class="fragment"><code>
+$ git checkout story23
+                        </code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Remote commands</h2>
+                        <h3>(remote)</h3>
+                        <p>List, add and delete remote repository aliases</p>
+                        <pre class="fragment"><code>
+$ git remote -v
+origin	ssh://andrea@domain.com/path/to/git/repository (fetch)
+origin	ssh://andrea@domain.com/path/to/git/repository (push)
+                        </code></pre>
+                        <pre class="fragment"><code>
+$ git remote add myLocalDirectory /var/www/html/myProject/
+                        </code></pre>
+                        <pre class="fragment"><code>
+$ git remote -v
+myLocalDirectory    /var/www/html/myProject/ (fetch)
+myLocalDirectory    /var/www/html/myProject/ (push)
+origin  ssh://andrea@domain.com/path/to/git/repository (fetch)
+origin	ssh://andrea@domain.com/path/to/git/repository (push)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Remote commands</h2>
+                        <h3>(fetch)</h3>
+                        <p>Download new branches and data from a remote repository</p>
+                        <pre><code>
+$ git fetch
+                        </code></pre>
+                        <p class="fragment">Everything is stored in .git/FETCH_HEAD. This information is left for a later MERGE</p>
+                        <pre class="fragment"><code>
+$ git diff FETCH_HEAD
+                        </code></pre>
+                        <p class="fragment">And, if you are happy with the changes</p>
+                        <pre class="fragment"><code>
+$ git merge FETCH_HEAD
+                        </code></pre>
+                        
+                    </section>
+                    <section>
+                        <h2>Remote commands</h2>
+                        <h3>(pull)</h3>
+                        <p>FETCH from a remote repository and try to MERGE into the current branch.</p>
+                        <p class="fragment">In its default mode, PULL is a shorthand for FETCH followed by MERGE FETCH_HEAD</p>
+                        <pre class="fragment"><code>
+$ git fetch
+$ git merge FETCH_HEAD
+                        </code></pre>
+                        <p class="fragment">Running the commands FETCH and MERGE separately is safer.</p>
+                    </section>
+                    <section>
+                        <h2>Remote commands</h2>
+                        <h3>(push)</h3>
+                        <p>PUSH your new branches and data to a remote repository.</p>
+                        <pre><code>
+$ git push
+                        </code></pre>
+                        <p>which would PUSH the "master" branch to the "origin" repository.</p>
+                        <p class="fragment">Otherwise repository and branch can be specified.</p>
+                        <pre class="fragment"><code>
+$ git push [repo_alias] [branch]
+                        </code></pre>
+                        <p class="fragment">You can PUSH only to bare repositories.</p>
+                        
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>GIT --bare repository</h2>
+                        <h3>What it is</h3>
+                        
+                        <p class="fragment">In practice, it's a GIT repository that has:</p>
+                        <ul>
+                            <li class="fragment">
+                                NO .git directory - because its content is all in the main directory
+                            </li>
+                            <li class="fragment">
+                                NO working files (no tree)
+                            </li>
+                        </ul>
+                        <p class="fragment">It only contains the version control information.</p>
+                    </section>
+                    <section>
+                        <h2>GIT --bare repository</h2>
+                        <h3>Reasons to exist</h3>
+
+                        <p class="fragment">In Git (from version 1.7.0) the repository has to be "bare" 
+                            (no working files) in order to accept a PUSH.
+                        </p>
+                        <p class="fragment">This is because a "non-bare" repository 
+                            is expected to contain files someone else is working on.
+                            The MERGE should be approved by the "owner" of that repository 
+                            and nobody else.
+                        </p>
+                        <p class="fragment">"bare" repositories exist in Git also as a way of having a central (mainly remote) 
+                            repository that a number of people can PUSH to.
+                        </p>
+                        <p class="fragment">If you want to transfer changes from a "non-bare" repository to another, 
+                            the correct way is to PULL from the destination rather than PUSH from the target.
+                        </p>
+
+                    </section>
+                    <section>
+                        <h2>GIT --bare repository</h2>
+                        <h3>The correct way of using it</h3>
+
+                        <p class="fragment">
+                            In Git you should only use a "bare" repository to CLONE and PULL from, and PUSH to.
+                        </p>
+                        <p class="fragment">
+                            It doesn't have a checked out tree, so it just does what the "server" notionally does in 
+                            a centralized VCS - records commits, branches, etc when you PUSH to it, and gives you the 
+                            latest versions when you CLONE or PULL from it.
+                        </p>
+                        <p class="fragment">
+                            Therefore in Git a PUSH isn't possible unless the repository is "bare" (no working files).
+                        </p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>GIT GUIs</h2>
+                    <p>Git comes with two built-in GUI tools for committing 
+                        (<a href="http://git-scm.com/docs/git-gui" target="_blank">git-gui</a>) 
+                        and browsing (<a href="http://git-scm.com/docs/gitk" target="_blank">gitk</a>), 
+                        but there are several 
+                        <a href="http://git-scm.com/downloads/guis" target="_blank">third-party tools</a>.</p>
+                    <p class="fragment">git gui focuses on allowing users to make changes to 
+                        their repository by making new commits, amending existing ones, 
+                        creating branches, performing local merges, and fetching/pushing 
+                        to remote repositories.</p>
+                    <p class="fragment">gitk displays changes in a repository or a selected set of commits. 
+                        This includes visualizing the commit graph, showing information related to each commit, 
+                        and the files in the trees of each revision.</p>
+                    <p class="fragment">Another GUI probably worth mentioning for developers used to TortoiseSVN, is 
+                        <a href="http://code.google.com/p/tortoisegit/" target="_blank">TortoiseGit</a>.</p>
+                </section>
+                
+                <section>
+                    <h2>Resources/Documentation</h2>
+                    
+                    <ul>
+                        <li><a href="http://git-scm.com/" target="_blank">Git official site</a>
+                            <ul>
+                                <li><a href="http://git-scm.com/docs" target="_blank">Official reference</a></li>
+                                <li>Book "<a href="http://git-scm.com/book" target="_blank">Pro Git</a>"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="http://gitref.org" target="_blank">Reference</a> by the GitHub team
+                        </li>
+                        <li>
+                            <a href="http://git.or.cz/course/svn.html" target="_blank">Git - SVN Crash Course</a>
+                        </li>
+                        <li>
+                            <a href="http://marklodato.github.com/visual-git-guide/index-en.html" target="_blank">
+                                A Visual Git Reference
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://toroid.org/ams/git-central-repo-howto" target="_blank">
+                                Using Git with a central repository
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://git.wiki.kernel.org/index.php/GitSvnComparison" target="_blank">
+                                Git-Svn comparison
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <!--
+                <section>
+                    <h2>Intergalactic Interconnections</h2>
+                    <p>
+                        You can link between slides internally,<br/>
+                        <a href="#/2/3">like this</a>.
+                    </p>
+                </section>
+                -->
+
+                <section>
+                    <h2>Introduction to GIT</h2>
+                    <h3>THE END</h3>
+                    <h4>by Andrea Bolandrina</h4>
+                </section>
+            </div>
+
+            <!-- The navigational controls UI -->
+            <aside class="controls">
+                <a class="left" href="#">&#x25C4;</a>
+                <a class="right" href="#">&#x25BA;</a>
+                <a class="up" href="#">&#x25B2;</a>
+                <a class="down" href="#">&#x25BC;</a>
+            </aside>
+
+            <!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+            <div class="progress"><span></span></div>
+
+        </div>
+
+        <!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+        <script src="lib/js/head.min.js"></script>
+
+        <script>
+            // Load the main reveal.js script
+            head.js( 'js/reveal.js', function() {
+                // Parse the query string into a key/value object
+                var query = {};
+
+                location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                    query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+                } );
+
+                // Fires when a slide with data-state=customevent is activated
+                Reveal.addEventListener( 'customevent', function() {
+                    console.log( '"customevent" has fired' );
+                } );
+
+                // Fires each time a new slide is activated
+                Reveal.addEventListener( 'slidechanged', function( event ) {
+                    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+                } );
+
+                // Full list of configuration options available here:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+                    controls: true,
+                    progress: true,
+                    history: true,
+					
+                    theme: query.theme || 'default', // default/neon/beige
+                    transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+                });
+            } );
+			
+            // Load third party scripts
+            head.js( 'lib/js/classList.js' );
+            head.js( 'lib/js/highlight.js', function() {
+                // Fire off syntax highlighting for potential code samples in the slides
+                hljs.initHighlightingOnLoad();
+            } );
+
+            // If we're runnning the notes server we need to include some additional JS
+            // TODO Is there a better way to determine if we're running the notes server?
+            if( window.location.host === 'localhost:1947' ) {
+                head.js( 'socket.io/socket.io.js', 'plugin/speakernotes/client.js' );
+            }
+        </script>
+
+    </body>
+</html>
